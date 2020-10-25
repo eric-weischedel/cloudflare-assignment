@@ -10,8 +10,19 @@ export async function handleRequest(request: Request): Promise<Response> {
       },
     });
   } else {
-    return new Response(null, {
-      status: 404,
+    const response = await fetch(
+      'https://static-links-page.signalnerve.workers.dev',
+      {
+        method: 'GET',
+      },
+    );
+
+    const html = await response.text();
+
+    return new Response(html, {
+      headers: {
+        'Content-Type': 'text/html',
+      },
     });
   }
 }
