@@ -1,6 +1,6 @@
 name = "cloudflare-assignment"
 type = "webpack"
-account_id = ""
+account_id = "02640078508bae8458bc6a9d6485d7f9"
 workers_dev = true
 route = ""
 zone_id = ""
