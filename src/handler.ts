@@ -1,18 +1,17 @@
 import links from './constants/links';
 
 export async function handleRequest(request: Request): Promise<Response> {
-  const endpoint = request.url.split('/').pop();
+  const url = new URL(request.url);
 
-  switch (endpoint) {
-    case 'links':
-      return new Response(JSON.stringify(links, null, 2), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    default:
-      return new Response(null, {
-        status: 404,
-      });
+  if (url.pathname === '/links') {
+    return new Response(JSON.stringify(links, null, 2), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } else {
+    return new Response(null, {
+      status: 404,
+    });
   }
 }
